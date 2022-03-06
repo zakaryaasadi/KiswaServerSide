@@ -24,4 +24,9 @@ Route::group(['middleware' => [LoggerMiddleware::class]], function () {
     });
 
 
+    Route::get('/test', function(){
+        return 'run';
+    });
+
+
 });
