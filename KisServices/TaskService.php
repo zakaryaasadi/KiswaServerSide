@@ -38,7 +38,7 @@ class TaskService{
     public function GetTaskByCustomerPhone($customerPhone){
         $tasks = $this->tookanTaskService->GetTasksNotCompletedByOrderId($customerPhone);
         if(Count($tasks) > 0){
-            return new ResponseModel(StatusCode::Success , "You cannot create a new task because there is still a pending task", [
+            return new ResponseModel(StatusCode::Success , "Successfull", [
                 "task_id" => $tasks[0]->job_id,
                 "datetime" => date("Y-m-d", strtotime($tasks[0]->job_pickup_datetime)),
             ]);
