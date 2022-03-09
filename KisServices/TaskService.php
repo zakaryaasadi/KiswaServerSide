@@ -35,8 +35,8 @@ class TaskService{
 # Method
 
 
-    public function GetTaskByCustomerPhone($customerPhone){
-        $tasks = $this->tookanTaskService->GetTasksNotCompletedByOrderId($customerPhone);
+    public function GetAssignTaskByCustomerPhone($customerPhone){
+        $tasks = $this->tookanTaskService->GetAssignTaskByOrderId($customerPhone);
         if(Count($tasks) > 0){
             return new ResponseModel(StatusCode::Success , "Successfull", [
                 "task_id" => $tasks[0]->job_id,

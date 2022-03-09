@@ -38,6 +38,21 @@ class TookanTaskService{
         return $arr;
     }
 
+    public function GetAssignTaskByOrderId($orderId){
+        $body = [
+            "order_id" => [$orderId],
+            "job_status" => [TookanTaskStatus::Assigned, 
+                            TookanTaskStatus::AcceptedOrAcknowledged, TookanTaskStatus::Started,
+                            TookanTaskStatus::InProgressOrArrived],           
+        ];
+
+        $response = $this->taskApi->GetTasks($body);
+        if($response->ok() && $response->object()->status){
+            return $response->object()->data;
+        }
+        return [];
+    }
+
 
     public function GetTasksNotCompletedByOrderId($orderId){
         $body = [
