@@ -20,6 +20,11 @@ class TaskController extends Controller
         $this->taskService = Singleton::Create(TaskService::class);   
     }
 
+    public function GetByCustomerPhone($phone){
+        $response = $this->taskService->GetTaskByCustomerPhone($phone);
+        return $response->toJson();
+    }
+
 
     public function Create(Request $request){
 

@@ -19,11 +19,12 @@ use App\Http\Middleware\LoggerMiddleware;
 Route::group(['middleware' => [LoggerMiddleware::class]], function () {
 
 
-    // Route::group(['prefix' => 'task'], function () {
-    //     Route::post('/create', 'TaskController@Create');
-    // });
+    Route::group(['prefix' => 'task'], function () {
+        Route::post('/create', 'TaskController@Create');
+        Route::Get('/get/customer_phone/{phone}', 'TaskController@GetByCustomerPhone');
+    });
 
-    Route::post('/task/create', 'TaskController@Create');
+    //Route::post('/task/create', 'TaskController@Create');
     // Route::get('/test', function(){
     //     return 'run';
     // });
