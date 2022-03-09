@@ -21,7 +21,7 @@ class TaskController extends Controller
     }
 
     public function GetAssignTaskByCustomerPhone($phone){
-        $response = $this->taskService->GetTaskByCustomerPhone($phone);
+        $response = $this->taskService->GetAssignTaskByCustomerPhone($phone);
         return $response->toJson();
     }
 
