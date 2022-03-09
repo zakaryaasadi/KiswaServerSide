@@ -118,6 +118,11 @@ return [
             'path' => storage_path('logs/Api_Log.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+        "auto_asign" => [
+            'driver' => 'single',
+            'path' => storage_path('logs/Auto_Asign_Log.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
     ],
 
 ];

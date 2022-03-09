@@ -28,7 +28,7 @@ public function __construct()
 
 #region Methods
     public function GetAgentsByJob($job){
-        $geofenceDetails = $job->geofence_details;
+        $geofenceDetails = json_decode($job->geofence_details);
 
         $this->agentsList = [];
         foreach($geofenceDetails as $i){
