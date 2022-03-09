@@ -41,7 +41,6 @@ class TaskService{
             return new ResponseModel(StatusCode::Success , "You cannot create a new task because there is still a pending task", [
                 "task_id" => $tasks[0]->job_id,
                 "datetime" => date("Y-m-d", strtotime($tasks[0]->job_pickup_datetime)),
-                "datetime" => $tasks[0]->job_pickup_datetime,
             ]);
         }
 
@@ -54,7 +53,7 @@ class TaskService{
         if(Count($tasks) > 0){
             return new ResponseModel(StatusCode::Pending , "You cannot create a new task because there is still a pending task", [
                 "task_id" => $tasks[0]->job_id,
-                "datetime" => $tasks[0]->job_pickup_datetime,
+                "datetime" => date("Y-m-d", strtotime($tasks[0]->job_pickup_datetime)),
             ]);
         }
 
