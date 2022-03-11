@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use KisCore\Infrastructure\Singleton;
 use KisData\ResponseModel;
 use KisServices\TaskService;
@@ -14,10 +14,18 @@ class TaskController extends Controller
 
 #Fields
     private $taskService;
+    private $rules;
 #
     public function __construct()
     {
-        $this->taskService = Singleton::Create(TaskService::class);   
+        $this->taskService = Singleton::Create(TaskService::class);
+        $this->rules = [
+            'name' => 'required',
+            'phone' => ['required', new PhoneNumber],
+            'country' => 'required',
+            'address' => 'required',
+            'created_by' => 'required',
+        ];
     }
 
     public function GetAssignTaskByCustomerPhone($phone){
@@ -28,28 +36,25 @@ class TaskController extends Controller
 
     public function Create(Request $request){
 
-            $validator = Validator::make($request->all(), $this->rules);
-            if($validator->failed()){
-                $fataData = new ResponseModel(400, "There are some errors in the request", $validator->errors());
-                return $fataData->toJson();
-            }
+           $validator = validator($request->all(), [
+            'name' => 'required',
+            'phone' => ['required', new PhoneNumber],
+            'country' => 'required',
+            'address' => 'required',
+            'created_by' => 'required',
+        ]);
+           if($validator->fails()){
+               $fatalData = new ResponseModel(400, "There are some errors in the request", $validator->errors());
+               return $fatalData->toJson();
+           }
 
-            $response = $this->taskService->CreateTask($request->input('name'), $request->input('phone'), $request->input('created_by'), 
-                            $request->input('country'), $request->input('address'), $request->input('template'), $request->input('custom_fields'));
+
+            // $response = $this->taskService->CreateTask($request->name, $request->phone, $request->created_by, 
+            //                 $request->country, $request->address, $request->template, $request->custom_fields);
 
                             
-            return $response->toJson();
+            // return $response->toJson();
+
     }
 
-
-
-#Properties
-    public $rules = [
-        'name' => 'require',
-        'phone' => 'require|phone_number',
-        'country' => 'require',
-        'address' => 'require',
-        'created_by' => 'require',
-    ];
-#
 }
