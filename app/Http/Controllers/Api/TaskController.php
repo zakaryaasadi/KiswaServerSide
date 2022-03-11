@@ -36,24 +36,18 @@ class TaskController extends Controller
 
     public function Create(Request $request){
 
-           $validator = validator($request->all(), [
-            'name' => 'required',
-            'phone' => ['required', new PhoneNumber],
-            'country' => 'required',
-            'address' => 'required',
-            'created_by' => 'required',
-        ]);
+           $validator = validator($request->all(), $this->rules);
            if($validator->fails()){
                $fatalData = new ResponseModel(400, "There are some errors in the request", $validator->errors());
                return $fatalData->toJson();
            }
 
 
-            // $response = $this->taskService->CreateTask($request->name, $request->phone, $request->created_by, 
-            //                 $request->country, $request->address, $request->template, $request->custom_fields);
+            $response = $this->taskService->CreateTask($request->name, $request->phone, $request->created_by, 
+                            $request->country, $request->address, $request->template, $request->custom_fields);
 
                             
-            // return $response->toJson();
+            return $response->toJson();
 
     }
 
