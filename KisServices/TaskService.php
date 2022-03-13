@@ -2,6 +2,7 @@
 
 namespace KisServices;
 
+use GoogleMaps\GoogleMapsLocationModel;
 use GoogleMaps\GoogleMapsService;
 use KisCore\Infrastructure\Singleton;
 use KisData\StatusCode;
@@ -58,7 +59,7 @@ class TaskService{
         }
 
         $country = strtoupper($country);
-        $location = $this->googleMapsService->GetLocationByAddress($address);
+        $location = $this->GetLocationByAddress($address);
         $response = $this->tookanTaskService->CreateTask($customerName, 
                                     $customerPhone, 
                                     $createdBy, 
@@ -85,6 +86,24 @@ class TaskService{
     }
     
 
+
+#
+
+
+#Uilities
+
+    private function GetLocationByAddress($address){
+        $location = new GoogleMapsLocationModel(0, 0);
+            if (filter_var($address, FILTER_VALIDATE_URL)) {
+                $axis = explode('=', $address)[1];
+                $point = explode(',', $axis);
+                $location = new GoogleMapsLocationModel($point[0], $point[1]);
+            }else{
+                $location = $this->googleMapsService->GetLocationByAddress($address);
+            }
+
+        return $location;
+    }
 
 #
 
