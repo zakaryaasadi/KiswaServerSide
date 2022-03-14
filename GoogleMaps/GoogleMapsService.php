@@ -8,11 +8,13 @@ class GoogleMapsService{
     public function GetLocationByAddress( $address){
         $response = $this->FetchData($address);
         if($response->ok()){
-            $results = $response->json()["results"];
-            if(Count($results) > 0){
-                $location = $results[0]["geometry"]["location"];
-                return new GoogleMapsLocationModel($location["lat"], $location["lng"]);
-            }    
+            if(!isset($response->json()['results'])){
+                $results = $response->json()["results"];
+                if(Count($results) > 0){
+                    $location = $results[0]["geometry"]["location"];
+                    return new GoogleMapsLocationModel($location["lat"], $location["lng"]);
+                }  
+            }  
         }
 
         return new GoogleMapsLocationModel(0 , 0);
