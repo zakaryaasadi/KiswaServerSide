@@ -13,6 +13,7 @@ class GoogleMapsService{
             if($response->ok()){
                     $results = $response->json()["results"];
                     if(Count($results) > 0){
+                        Log::channel("api_log")->info($response->json());
                         $location = $results[0]["geometry"]["location"];
                         return new GoogleMapsLocationModel($location["lat"], $location["lng"]);
                 }  
