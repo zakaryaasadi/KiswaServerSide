@@ -6,7 +6,7 @@ namespace Tookan\DefaultValues;
 
 class TookanCountries{
     public static $Values = [
-        "KW" => [
+        "KWT" => [
             "NAME" => "Kuwait",
             "TIMEZONE" => "-180",
             "TEAM_ID" => "1168385",
@@ -14,7 +14,7 @@ class TookanCountries{
             "ALPHA_CODE" => "KWT",
             "TIMEZONE_CODE" => "Asia/Kuwait",
         ],
-        "SA" => [
+        "KSA" => [
             "NAME" => "Saudi Arabia",
             "TIMEZONE" => "-180",
             "TEAM_ID" => "1234041",
@@ -22,7 +22,7 @@ class TookanCountries{
             "ALPHA_CODE" => "KSA",
             "TIMEZONE_CODE" => "Asia/Riyadh",
         ],
-        "OM" => [
+        "OMN" => [
             "NAME" => "Oman",
             "TIMEZONE" => "-240",
             "TEAM_ID" => "1228392",
@@ -30,7 +30,7 @@ class TookanCountries{
             "ALPHA_CODE" => "OMN",
             "TIMEZONE_CODE" => "Asia/Muscat",
         ],
-        "AE" => [
+        "UAE" => [
             "NAME" => "United Arab Emirates",
             "TIMEZONE" => "-240",
             "TEAM_ID" => "1105452",
