@@ -25,7 +25,7 @@ class PhoneNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('%^\9[0-9]{2}[15]?[0-9]\d{7}$%', $value) ;
+        return preg_match('%^\+9[0-9]{2}[15]?[0-9]\d{7}$%', $value) ;
 
     }
 
@@ -36,6 +36,6 @@ class PhoneNumber implements Rule
      */
     public function message()
     {
-        return 'Invalid phone number, it must like a 9XXXXXXXXXXXX.';
+        return 'Invalid phone number, it must like a +9XXXXXXXXXXXX.';
     }
 }
