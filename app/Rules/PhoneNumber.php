@@ -25,8 +25,7 @@ class PhoneNumber implements Rule
      */
     public function passes($attribute, $value)
     {
-        return preg_match('%^\+9[0-9]{2}[15]?[0-9]\d{7}$%', $value) ;
-
+        return preg_match('/^\+(9|٩)([0-9]|[٠-٩]){2}([15]|[١٥])?([0-9]|[٠-٩]){8}$/u', $value) ;
     }
 
     /**
