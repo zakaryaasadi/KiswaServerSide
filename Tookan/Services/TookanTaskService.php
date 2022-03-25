@@ -93,8 +93,8 @@ class TookanTaskService{
         return $this->taskApi->CreateTask($body);
     }
 
-    public function AssignTaskToAgent($jobId, $fleetId){
-        return $this->taskApi->AssignTaskToAgent($jobId, $fleetId);
+    public function AssignTaskToAgent($job, $fleetId){
+        return $this->taskApi->AssignTaskToAgent($job->job_id, $fleetId, TookanCountries::$Values[$job->country]["TEAM_ID"],);
     }
 
     public function UpdateTaskDate($jobId, $date){

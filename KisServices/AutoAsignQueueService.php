@@ -6,6 +6,7 @@ use App\Models\AutoAsignModel;
 use Illuminate\Support\Facades\Log;
 use KisCore\Infrastructure\Singleton;
 use KisData\ConfigurationValues;
+use Tookan\DefaultValues\TookanCountries;
 use Tookan\Services\TookanAgentService;
 use Tookan\Services\TookanTaskService;
 
@@ -31,12 +32,14 @@ class AutoAsignQueueService{
         return $this->isProcessing;
     }
 
-    public function AddToQueue($job){
+    public function AddToQueue($job, $country){
         if(!isset($job->geofence_details) || count($job->geofence_details) == 0){
             return;
         }
 
         $job->geofence_details = json_encode($job->geofence_details);
+        $job->country = $country;
+
         AutoAsignModel::Create((array)$job);
     }
 
@@ -66,8 +69,8 @@ class AutoAsignQueueService{
             Log::channel('auto_asign')->info("The task has been created, but there is no agent covering this area");
         }
 
-
-        $startdate = $this->skipWeekend(strtotime(date("Y-m-d H:i:s")));
+        $initDate = $this->createStartDateTask($job->country);
+        $startdate = $this->skipWeekend($initDate, $job->country);
         $enddate = strtotime("+10 days", $startdate);
 
         while($startdate < $enddate){
@@ -83,16 +86,18 @@ class AutoAsignQueueService{
                 $res_edit_date_task = $this->tookanTaskService->UpdateTaskDate($job->job_id, $startdate);
 
                 if($res_edit_date_task->ok()){
-                    $this->tookanTaskService->AssignTaskToAgent($job->job_id, $bestAgentId);
+                    $this->tookanTaskService->AssignTaskToAgent($job, $bestAgentId);
+
                     Log::channel('auto_asign')->info("Successful " . json_encode([
                         "task_id" => $job->job_id,
                         "datetime" => date("Y-m-d H:i:s", $startdate),
                     ]));
+
                     return;
                 }
 
             }else{
-                $startdate = $this->skipWeekend(strtotime("+1 day", $startdate));
+                $startdate = $this->skipWeekend(strtotime("+1 day", $startdate), $job->country);
             }
         }
 
@@ -101,9 +106,30 @@ class AutoAsignQueueService{
     }
 
 
-    private function skipWeekend($date){
+
+    private function createStartDateTask($country){
+        date_default_timezone_set(TookanCountries::$Values[$country]["TIMEZONE_CODE"]);
+
+        $startHour = TookanCountries::$Values[$country]["START_HOUR_WORK"];
+        $endHour = TookanCountries::$Values[$country]["END_HOUR_WORK"];
+
+        $afterOneHour = date("H") + 1;
+    
+        if($afterOneHour > $endHour){
+            return strtotime("+1 day {$startHour}:00");
+        }elseif($afterOneHour < $startHour){
+            return strtotime("{$startHour}:00");
+        }
+    
+        return strtotime('+1 hour');
+    }
+
+
+    private function skipWeekend($date, $country){
+        $weekend = TookanCountries::$Values[$country]["WEEKEND"];
         $day = strtolower(date('l', $date));
-        if($day == ConfigurationValues::Weekend){
+
+        if($day == $weekend){
             $date = strtotime("+1 day", $date);
         }
 

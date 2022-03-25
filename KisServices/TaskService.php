@@ -75,7 +75,7 @@ class TaskService{
         if($response->ok()){
 
             if($response->object()->status == 200){
-                $this->autoAsignService->AddToQueue($response->object()->data);
+                $this->autoAsignService->AddToQueue($response->object()->data, $country);
             }
 
             return new ResponseModel($response->object()->status, $response->object()->message, $response->object()->data);

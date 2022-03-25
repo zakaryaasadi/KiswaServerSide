@@ -28,10 +28,11 @@ class TaskApi{
     }
 
 
-    public function AssignTaskToAgent($jobId, $fleetId){
+    public function AssignTaskToAgent($jobId, $fleetId, $teamId){
         $body = [
             "job_id" => $jobId,
-            "fleet_id" => $fleetId
+            "fleet_id" => $fleetId,
+            "team_id" => $teamId,
         ];
         return TookanApi::Callback('assign_task', $body);
     }
