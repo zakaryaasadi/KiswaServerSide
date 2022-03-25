@@ -5,7 +5,6 @@ namespace KisServices;
 use App\Models\AutoAsignModel;
 use Illuminate\Support\Facades\Log;
 use KisCore\Infrastructure\Singleton;
-use KisData\ConfigurationValues;
 use Tookan\DefaultValues\TookanCountries;
 use Tookan\Services\TookanAgentService;
 use Tookan\Services\TookanTaskService;
