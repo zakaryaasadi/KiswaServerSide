@@ -40,7 +40,7 @@ class TookanCountries{
             "WEEKEND" => "friday",
             "START_HOUR_WORK" => 9,
             "END_HOUR_WORK" => 23,
-            "NUMBER_OF_TASKS" => 30,
+            "NUMBER_OF_TASKS" => 20,
         ],
         "UAE" => [
             "NAME" => "United Arab Emirates",
