@@ -80,7 +80,7 @@ class AutoAsignQueueService{
 
             $bestAgentId = $this->tookanAgentService->GetAgentIdByMinNumberOfTasks($tasksAgentPerDay);
 
-            if(count($tasksAgentPerDay[$bestAgentId]) < ConfigurationValues::NumberOfTasksPerDay){
+            if(count($tasksAgentPerDay[$bestAgentId]) < TookanCountries::$Values[$job->country]["NUMBER_OF_TASKS"]){
 
                 $res_edit_date_task = $this->tookanTaskService->UpdateTaskDate($job->job_id, $startdate);
 
