@@ -38,8 +38,8 @@ class TookanCountries{
             "ALPHA_CODE" => "OMN",
             "TIMEZONE_CODE" => "Asia/Muscat",
             "WEEKEND" => "friday",
-            "START_HOUR_WORK" => 9,
-            "END_HOUR_WORK" => 23,
+            "START_HOUR_WORK" => 11,
+            "END_HOUR_WORK" => 19,
             "NUMBER_OF_TASKS" => 20,
         ],
         "UAE" => [
