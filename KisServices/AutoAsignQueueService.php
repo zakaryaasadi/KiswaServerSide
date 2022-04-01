@@ -126,6 +126,8 @@ class AutoAsignQueueService{
 
     private function skipWeekend($date, $country){
         $weekend = TookanCountries::$Values[$country]["WEEKEND"];
+        
+        $weekend = strtolower($weekend);
         $day = strtolower(date('l', $date));
 
         if($day == $weekend){
