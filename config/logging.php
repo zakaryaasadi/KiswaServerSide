@@ -114,7 +114,7 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
         'api_log' => [
-            'driver' => 'single',
+            'driver' => 'daily',
             'path' => storage_path('logs/Api_Log.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
