@@ -119,7 +119,7 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
         ],
         "auto_asign" => [
-            'driver' => 'single',
+            'driver' => 'daily',
             'path' => storage_path('logs/Auto_Asign_Log.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
