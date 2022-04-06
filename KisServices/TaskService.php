@@ -94,7 +94,7 @@ class TaskService{
 
     private function GetLocationByAddress($address){
         $location = new GoogleMapsLocationModel(0, 0);
-            if (filter_var($address, FILTER_VALIDATE_URL)) {
+            if (filter_var($address, FILTER_VALIDATE_URL) && count(explode('=', $address)) > 1) {
                 $axis = explode('=', $address)[1];
                 $point = explode(',', $axis);
                 $location = new GoogleMapsLocationModel($point[0], $point[1]);
