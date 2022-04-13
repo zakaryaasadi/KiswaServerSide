@@ -8,7 +8,9 @@ class GoogleMapsLocationModel{
 
     public function __construct($lat, $lng)
     {
-        $this->lat = $lat;
-        $this->lng = $lng;
+        if(is_numeric($lat) && is_numeric($lng)){
+            $this->lat = $lat;
+            $this->lng = $lng;
+        }
     }
 }
