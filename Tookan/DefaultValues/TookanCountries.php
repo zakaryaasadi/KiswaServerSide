@@ -25,7 +25,7 @@ class TookanCountries{
             "COUNTRY_CODE" => "+966",
             "ALPHA_CODE" => "KSA",
             "TIMEZONE_CODE" => "Asia/Riyadh",
-            "WEEKEND" => "Friday",
+            "WEEKEND" => "",
             "START_HOUR_WORK" => 9,
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
