@@ -54,5 +54,17 @@ class TookanCountries{
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
         ],
+        "BHR" => [
+            "NAME" => "Bahrain",
+            "TIMEZONE" => "-180",
+            "TEAM_ID" => "1274892",
+            "COUNTRY_CODE" => "+973",
+            "ALPHA_CODE" => "BHR",
+            "TIMEZONE_CODE" => "Asia/Bahrain",
+            "WEEKEND" => "Friday",
+            "START_HOUR_WORK" => 9,
+            "END_HOUR_WORK" => 23,
+            "NUMBER_OF_TASKS" => 30,
+        ],
     ];
 }
