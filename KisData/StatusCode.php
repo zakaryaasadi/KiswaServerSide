@@ -5,9 +5,9 @@ namespace KisData;
 
 class StatusCode{
 
-    const Success = 200;
-    const Failed = 400;
-    const Pending = 201;
-    const SuccessBut = 202;
+    const Success = 2000;
+    const Failed = 4000;
+    const Pending = 2010;
+    const SuccessBut = 2020;
 
 }
