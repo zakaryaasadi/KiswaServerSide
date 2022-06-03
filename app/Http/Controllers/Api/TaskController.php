@@ -7,6 +7,7 @@ use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use KisCore\Infrastructure\Singleton;
 use KisData\ResponseModel;
+use KisData\StatusCode;
 use KisServices\TaskService;
 
 class TaskController extends Controller
@@ -38,7 +39,7 @@ class TaskController extends Controller
 
            $validator = validator($request->all(), $this->rules);
            if($validator->fails()){
-               $fatalData = new ResponseModel(400, "There are some errors in the request", $validator->errors());
+               $fatalData = new ResponseModel(StatusCode::Failed, "There are some errors in the request", $validator->errors());
                return $fatalData->toJson();
            }
 

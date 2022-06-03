@@ -27,7 +27,7 @@ class LoggerMiddleware
         Log::channel("api_log")->info('URL: ' . $request->fullUrl());
         Log::channel("api_log")->info('Method: ' . $request->getMethod());
         Log::channel("api_log")->info('IP Address: ' . $request->getClientIp());
-        Log::channel("api_log")->info("Data: ",[$request->all()]);
-        Log::channel("api_log")->info("Response".$response->getContent());
+        Log::channel("api_log")->info('Data: ',[$request->all()]);
+        Log::channel("api_log")->info('Response: '.$response->getContent());
     }
 }
