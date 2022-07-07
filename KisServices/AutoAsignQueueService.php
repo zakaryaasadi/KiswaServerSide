@@ -122,7 +122,7 @@ class AutoAsignQueueService{
             return strtotime("{$startHour}:00", $initDate);
         }
     
-        return strtotime('+1 hour');
+        return strtotime('+1 hour', $initDate);
     }
 
 
