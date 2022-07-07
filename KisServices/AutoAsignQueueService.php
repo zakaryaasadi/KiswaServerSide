@@ -112,13 +112,18 @@ class AutoAsignQueueService{
         $startHour = TookanCountries::$Values[$country]["START_HOUR_WORK"];
         $endHour = TookanCountries::$Values[$country]["END_HOUR_WORK"];
 
-        // $afterOneHour = date("H") + 1;
+        if($country == "KSA"){
+
+            $afterOneHour = date("H") + 1;
     
-        // if($afterOneHour > $endHour){
-        //     return strtotime("+1 day {$startHour}:00");
-        // }elseif($afterOneHour < $startHour){
-        //     return strtotime("{$startHour}:00");
-        // }
+            if($afterOneHour > $endHour){
+                return strtotime("+1 day {$startHour}:00");
+            }elseif($afterOneHour < $startHour){
+                return strtotime("{$startHour}:00");
+            }
+
+            return strtotime("+1 hour");
+        }
     
         return strtotime('07/12/2022 12:00');
     }
