@@ -114,10 +114,12 @@ class AutoAsignQueueService{
 
         $afterOneHour = date("H") + 1;
     
+        // just in eid
+        $initDate = strtotime("12/07/2022");
         if($afterOneHour > $endHour){
-            return strtotime("+1 day {$startHour}:00");
+            return strtotime("+1 day {$startHour}:00", $initDate);
         }elseif($afterOneHour < $startHour){
-            return strtotime("{$startHour}:00");
+            return strtotime("{$startHour}:00", $initDate);
         }
     
         return strtotime('+1 hour');
