@@ -18,11 +18,10 @@ class GoogleMapsService{
                 }  
             }
 
-            return new GoogleMapsLocationModel(0 , 0);
+            return $this->InitLocation($response);
         }catch(Throwable $e){
-            Log::channel("api_log")->error($response->json());
             Log::channel("api_log")->error($e->getMessage());
-            return new GoogleMapsLocationModel(0 , 0);
+            return $this->InitLocation($response);
         }
     }
 
@@ -32,5 +31,10 @@ class GoogleMapsService{
             'address' => $address,
             'key' => GoogleMapsApiConfiguration::ApiKey(),
         ]);
+    }
+
+    private function InitLocation($response){
+            Log::channel("api_log")->error($response->json());
+            return new GoogleMapsLocationModel(0 , 0);
     }
 }
