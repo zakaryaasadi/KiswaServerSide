@@ -20,7 +20,7 @@ class GoogleMapsService{
 
             return $this->InitLocation($response);
         }catch(Throwable $e){
-            Log::channel("api_log")->error($e->getMessage());
+            Log::channel("errorlog")->error($e->getMessage());
             return $this->InitLocation($response);
         }
     }
@@ -34,7 +34,7 @@ class GoogleMapsService{
     }
 
     private function InitLocation($response){
-            Log::channel("api_log")->error($response->json());
+            Log::channel("errorlog")->error($response->json());
             return new GoogleMapsLocationModel(0 , 0);
     }
 }
