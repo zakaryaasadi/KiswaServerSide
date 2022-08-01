@@ -30,3 +30,6 @@ Route::group(['middleware' => [LoggerMiddleware::class]], function () {
 
 
 });
+
+
+Route::Get('/google/{latlng}', 'GoogleMapController@Get');
