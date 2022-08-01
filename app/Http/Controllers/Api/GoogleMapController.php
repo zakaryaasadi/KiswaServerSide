@@ -13,7 +13,7 @@ class GoogleMapController extends Controller
         $url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=".$latlng."&key=".GoogleMapsApiConfiguration::ApiKey();
         
         $host = request()->getHost();
-        if($host == "kiswaksa.com"){
+        if($host == "services.kiswaksa.com"){
             $response = Http::get($url);
             return $response->json();
         }
