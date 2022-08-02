@@ -14,7 +14,8 @@ class GoogleMapController extends Controller
         
         $host = request()->getHost();
         if($host == "services.kiswaksa.com"){
-            $response = Http::get($url);
+            $response = Http::withoutVerifying()
+            ->withOptions(["verify"=>false])->get($url);
             return $response->json();
         }
 
