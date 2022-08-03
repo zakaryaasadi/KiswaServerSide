@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use GoogleMaps\GoogleMapsApiConfiguration;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class GoogleMapController extends Controller
 {
@@ -16,7 +17,11 @@ class GoogleMapController extends Controller
         if($host == "services.kiswaksa.com"){
             $response = Http::withoutVerifying()
             ->withOptions(["verify"=>false])->get($url);
-            return $response->json();
+            if($response->ok()){
+                $response->json();
+            }else{
+                Log::channel("errorlog")->error($response->json());
+            }
         }
 
         return json_encode([
