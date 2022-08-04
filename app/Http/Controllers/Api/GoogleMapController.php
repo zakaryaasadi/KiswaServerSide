@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Log;
 class GoogleMapController extends Controller
 {
     public function Get($latlng){
-        $url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=".$latlng."&key=".GoogleMapsApiConfiguration::ApiKey();
+        try{
+            $url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=".$latlng."&key=".GoogleMapsApiConfiguration::ApiKey();
         
         $host = request()->getHost();
         if($host == "services.kiswaksa.com"){
@@ -29,5 +30,10 @@ class GoogleMapController extends Controller
             "results" => ["host" => $host,],
             "status" => "REQUEST_DENIED",
         ]);
+        }
+        catch (\Exception $e) {
+            Log::channel("errorlog")->error($e->getMessage());
+            Log::channel("errorlog")->error(json_encode($e));
+        }
     }
 }
