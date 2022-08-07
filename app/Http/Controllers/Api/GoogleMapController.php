@@ -19,7 +19,7 @@ class GoogleMapController extends Controller
             $response = Http::withoutVerifying()
             ->withOptions(["verify"=>false])->get($url);
             if($response->ok()){
-                $response->json();
+               return $response->json();
             }else{
                 Log::channel("errorlog")->error($response->json());
             }
