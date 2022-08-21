@@ -102,6 +102,21 @@ class TookanTaskService{
     }
 
 
+    public function SuccessTasks($teamId, $page = 1){
+        $body = [
+            "job_status" => [TookanTaskStatus::Successful],
+            "start_date" => date("Y-m-d", strtotime("yesterday")),
+            "end_date" => date("Y-m-d", strtotime("yesterday")),
+            "is_pagination" => 1,
+            "requested_page" => $page,
+            "team_id" => $teamId,
+        ];
+
+        $response = $this->taskApi->GetTasks($body);
+        return $response;
+    }
+
+
 #endregion
 
 

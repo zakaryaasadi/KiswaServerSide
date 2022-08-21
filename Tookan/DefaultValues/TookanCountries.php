@@ -17,6 +17,7 @@ class TookanCountries{
             "START_HOUR_WORK" => 9,
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
+            "MESSAGE_BIRD" => "",
         ],
         "KSA" => [
             "NAME" => "Saudi Arabia",
@@ -29,6 +30,7 @@ class TookanCountries{
             "START_HOUR_WORK" => 9,
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
+            "MESSAGE_BIRD" => "",
         ],
         "OMN" => [
             "NAME" => "Oman",
@@ -41,6 +43,7 @@ class TookanCountries{
             "START_HOUR_WORK" => 11,
             "END_HOUR_WORK" => 19,
             "NUMBER_OF_TASKS" => 20,
+            "MESSAGE_BIRD" => "",
         ],
         "UAE" => [
             "NAME" => "United Arab Emirates",
@@ -53,6 +56,7 @@ class TookanCountries{
             "START_HOUR_WORK" => 9,
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
+            "MESSAGE_BIRD" => "https://flows.messagebird.com/flows/faf1c9cf-e722-44b4-9d92-a98c21ab1dab/invoke",
         ],
         "BHR" => [
             "NAME" => "Bahrain",
@@ -65,6 +69,7 @@ class TookanCountries{
             "START_HOUR_WORK" => 9,
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
+            "MESSAGE_BIRD" => "",
         ],
     ];
 }

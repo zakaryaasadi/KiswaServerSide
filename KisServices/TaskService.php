@@ -2,11 +2,14 @@
 
 namespace KisServices;
 
+use App\Models\ReviewModel;
 use GoogleMaps\GoogleMapsLocationModel;
 use GoogleMaps\GoogleMapsService;
+use Illuminate\Support\Facades\Http;
 use KisCore\Infrastructure\Singleton;
 use KisData\StatusCode;
 use KisData\ResponseModel;
+use Tookan\DefaultValues\TookanCountries;
 use Tookan\Services\TookanTaskService;
 
 class TaskService{
@@ -86,6 +89,37 @@ class TaskService{
     }
     
 
+    public function SuccessTasks($country){
+        $response = $this->tookanTaskService->SuccessTasks(TookanCountries::$Values[$country]["TEAM_ID"]);
+
+        if(!$response->ok()){
+            return new ResponseModel(StatusCode::Failed, $response->status()); 
+        }
+
+        $data = $response->object()->data;
+        $total_page_count = $response->object()->total_page_count;
+
+        for($page = 2; $page <= $total_page_count; $page++){
+            $response = $this->tookanTaskService->SuccessTasks(TookanCountries::$Values[$country]["TEAM_ID"], $page);
+            $data = array_merge($data, $response->object()->data);
+        }
+
+        foreach($data as $item){
+            $item->country = $country;
+            $item->job_pickup_phone = str_replace(" ","",$item->job_pickup_phone);
+
+            $review = ReviewModel::where("job_id", $item->job_id)->first();
+            if($review == null){
+                // Send message to client on Whatsapp
+                $this->sendWhatsappMessage($item->job_id, $item->job_pickup_name, $item->job_pickup_phone, $item->fleet_name, $country);
+
+                // Save the job in database
+                ReviewModel::Create((array)$item);
+            }
+        }
+        return new ResponseModel(StatusCode::Success, Count($data), $data); 
+        
+    }
 
 #
 
@@ -103,6 +137,19 @@ class TaskService{
             }
 
         return $location;
+    }
+
+    private function sendWhatsappMessage($jobId, $name, $phone, $fleetName, $country){
+        $body = [
+            "job_id" => $jobId,
+            "name" => $name,
+            "phone" => $phone,
+            "fleet_name" => $fleetName,
+        ];
+
+        Http::withoutVerifying()
+        ->withOptions(["verify"=>false])
+                ->post(TookanCountries::$Values[$country]["MESSAGE_BIRD"], $body);
     }
 
 #

@@ -21,6 +21,10 @@ Route::group(['middleware' => [LoggerMiddleware::class]], function () {
     Route::group(['prefix' => 'task'], function () {
         Route::post('/create', 'TaskController@Create');
         Route::Get('/get_assign_task/customer_phone/{phone}', 'TaskController@GetAssignTaskByCustomerPhone');
+
+
+        Route::Get('/success', 'TaskController@Success');
+        Route::post('/review', 'TaskController@Review');
     });
 
     //Route::post('/task/create', 'TaskController@Create');
