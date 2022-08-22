@@ -123,6 +123,11 @@ return [
             'path' => storage_path('logs/Auto_Asign_Log.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+        "review_log" => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/Review_Log.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
     ],
 
 ];

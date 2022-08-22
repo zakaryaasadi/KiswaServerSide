@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LoggerMiddleware;
-
+use App\Http\Middleware\ReviewLogger;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +35,11 @@ Route::group(['middleware' => [LoggerMiddleware::class]], function () {
 
 });
 
+
+Route::group(['middleware' => [ReviewLogger::class]], function () {
+    Route::post('/task/review', 'TaskController@Review');
+});
+
+Route::Get('/task/success', 'TaskController@Success');
 
 Route::Get('/google/{latlng}', 'GoogleMapController@Get');
