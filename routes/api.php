@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LoggerMiddleware;
 use App\Http\Middleware\ReviewLogger;
@@ -21,25 +22,18 @@ Route::group(['middleware' => [LoggerMiddleware::class]], function () {
     Route::group(['prefix' => 'task'], function () {
         Route::post('/create', 'TaskController@Create');
         Route::Get('/get_assign_task/customer_phone/{phone}', 'TaskController@GetAssignTaskByCustomerPhone');
-
-
-        Route::Get('/success', 'TaskController@Success');
-        Route::post('/review', 'TaskController@Review');
     });
-
-    //Route::post('/task/create', 'TaskController@Create');
-    // Route::get('/test', function(){
-    //     return 'run';
-    // });
-
 
 });
 
 
 Route::group(['middleware' => [ReviewLogger::class]], function () {
-    Route::post('/task/review', 'TaskController@Review');
+
+    Route::post('/task/review', [ReviewController::class, 'ReviewEdit']);
+
 });
 
-Route::Get('/task/success', 'TaskController@Success');
+
+Route::post('/survey-table', [ReviewController::class, 'SurveyTable']);
 
 Route::Get('/google/{latlng}', 'GoogleMapController@Get');

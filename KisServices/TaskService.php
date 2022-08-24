@@ -6,6 +6,7 @@ use App\Models\ReviewModel;
 use GoogleMaps\GoogleMapsLocationModel;
 use GoogleMaps\GoogleMapsService;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use KisCore\Infrastructure\Singleton;
 use KisData\StatusCode;
 use KisData\ResponseModel;
@@ -89,11 +90,12 @@ class TaskService{
     }
     
 
-    public function SuccessTasks($country){
+    public function SendReviewMessageToSuccessTasks($country){
         $response = $this->tookanTaskService->SuccessTasks(TookanCountries::$Values[$country]["TEAM_ID"]);
 
         if(!$response->ok()){
-            return new ResponseModel(StatusCode::Failed, $response->status()); 
+            Log::channel('auto_review_log')->info($response->json());
+            return; 
         }
 
         $data = $response->object()->data;
@@ -117,8 +119,8 @@ class TaskService{
                 ReviewModel::Create((array)$item);
             }
         }
-        return new ResponseModel(StatusCode::Success, Count($data), $data); 
-        
+
+        Log::channel('auto_review_log')->info($response->json());        
     }
 
 #
@@ -149,7 +151,7 @@ class TaskService{
 
         Http::withoutVerifying()
         ->withOptions(["verify"=>false])
-                ->post(TookanCountries::$Values[$country]["MESSAGE_BIRD"], $body);
+                ->post(TookanCountries::$Values[$country]["MESSAGE_BIRD_REVIEW"], $body);
     }
 
 #

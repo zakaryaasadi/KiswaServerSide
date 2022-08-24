@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\ReviewModel;
 use App\Rules\PhoneNumber;
 use Illuminate\Http\Request;
 use KisCore\Infrastructure\Singleton;
@@ -55,37 +54,6 @@ class TaskController extends Controller
 
                             
             return $response->toJson();
-
-    }
-
-    public function Success(){
-        $response = $this->taskService->SuccessTasks("UAE");
-        return $response->toJson();
-    }
-
-    public function Review(Request $request){
-        $validator = validator($request->all(), $this->review_rules);
-           if($validator->fails()){
-               $fatalData = new ResponseModel(StatusCode::Failed, "There are some errors in the request", $validator->errors());
-               return $fatalData->toJson();
-           }
-
-
-           $review = ReviewModel::where('job_id', $request->job_id)->first();
-           if($review == null){
-                $fatalData = new ResponseModel(StatusCode::SuccessBut, "There is no record!");
-                return $fatalData->toJson();
-           }
-
-           foreach($request->all() as $key => $value){
-               $review->$key = $value;
-           }
-
-           $review->save();
-
-
-           $response = new ResponseModel(StatusCode::Success, "Success");
-           return $response->toJson();
 
     }
 

@@ -9,8 +9,8 @@ class TookanApi{
 
     public static function Callback($methodName, $body){
         $body['api_key'] = TookanApiConfiguration::ApiKey();
+        
         $res = Http::withoutVerifying()
-        ->withOptions(["verify"=>false])
                 ->post(TookanApiConfiguration::ApiUrl()  . $methodName, $body);
         return $res;
     }

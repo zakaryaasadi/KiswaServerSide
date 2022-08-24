@@ -125,7 +125,12 @@ return [
         ],
         "review_log" => [
             'driver' => 'daily',
-            'path' => storage_path('logs/Review_Log.log'),
+            'path' => storage_path('logs/review/Review_Log.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
+        "auto_review_log" => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/review/Auto_Review_Log.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
     ],
