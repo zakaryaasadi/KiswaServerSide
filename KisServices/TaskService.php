@@ -113,14 +113,15 @@ class TaskService{
             $review = ReviewModel::where("job_id", $item->job_id)->first();
             if($review == null){
                 // Send message to client on Whatsapp
-               // $this->sendWhatsappMessage($item->job_id, $item->job_pickup_name, $item->job_pickup_phone, $item->fleet_name, $country);
+               $this->sendWhatsappMessage($item->job_id, $item->job_pickup_name, $item->job_pickup_phone, $item->fleet_name, $country);
 
                 // Save the job in database
                 ReviewModel::Create((array)$item);
             }
         }
 
-        Log::channel('auto_review_log')->info($response->json());        
+        Log::channel('auto_review_log')->info(count($data) . " total of records");
+        Log::channel('auto_review_log')->info($data);        
     }
 
 #

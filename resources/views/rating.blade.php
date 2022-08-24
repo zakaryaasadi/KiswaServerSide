@@ -17,11 +17,11 @@
         <div class="col-lg-4 col-md-6">
             <div class="card mb-4">
                 <div class="card-body flexbox-b">
-                    <div class="easypie mr-4" data-percent="{{round($item->service_rating / 5.0 * 100)}} " data-bar-color="#18C5A9" data-size="80" data-line-width="8">
-                        <span class="easypie-data {{$item->service_rating >= 4 ? 'text-success' : ($item->service_rating >= 3 ? 'text-primary' : ($item->service_rating >= 2 ? 'text-secondary' : ($item->service_rating >= 1 ? 'text-warning' : ($item->service_rating >= 1 ? 'text-danger' : ''))))}}" style="font-size:32px;"><i class="fa fa-users"></i></span>
+                    <div class="easypie mr-4" data-percent="{{round($item->service_rating / 5.0 * 100)}} " data-bar-color="{{$item->service_rating >= 4 ? '#18C5A9' : ($item->service_rating >= 3 ? '#5c6bc0' : ($item->service_rating >= 2 ? '#6c757d' : ($item->service_rating >= 1 ? '#f75a5f' : '#5c6bc0')))}}" data-size="80" data-line-width="8">
+                        <span class="easypie-data {{$item->service_rating >= 4 ? 'text-success' : ($item->service_rating >= 3 ? 'text-primary' : ($item->service_rating >= 2 ? 'text-secondary' : ($item->service_rating >= 1 ? 'text-danger' : 'text-purple')))}}" style="font-size:32px;"><i class="fa fa-users"></i></span>
                     </div>
                     <div>
-                        <h3 class="font-strong {{$item->service_rating >= 4 ? 'text-success' : ($item->service_rating >= 3 ? 'text-primary' : ($item->service_rating >= 2 ? 'text-secondary' : ($item->service_rating >= 1 ? 'text-warning' : ($item->service_rating >= 1 ? 'text-danger' : ''))))}}">{{round($item->service_rating, 2)}}  <i class="fa fa-star text-warning"></i></h3>
+                        <h3 class="font-strong">{{round($item->service_rating, 2)}}  <i class="fa fa-star text-warning"></i></h3>
                         <div class="text-muted">CUSTOMERS {{$item->country}}</div>
                     </div>
                 </div>

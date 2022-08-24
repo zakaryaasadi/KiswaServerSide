@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
         
         // $schedule->command('inspire')->dailyAt("11:12");
         $schedule->command('auto_assign')->everyMinute();
-        $schedule->command('auto_review')->dailyAt("12:03");
+        $schedule->command('auto_review')->dailyAt("09:00");
     }
 
     /**
