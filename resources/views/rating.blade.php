@@ -22,7 +22,7 @@
                     </div>
                     <div>
                         <h3 class="font-strong">{{round($item->service_rating, 2)}}  <i class="fa fa-star text-warning"></i></h3>
-                        <div class="text-muted">CUSTOMERS {{$item->country}}</div>
+                        <div class="text-muted">{{$item->service_count}} CUSTOMERS {{$item->country}}</div>
                     </div>
                 </div>
             </div>
@@ -56,6 +56,7 @@
                         <th class="no-sort">Agent ID</th>
                         <th class="no-sort">Agent name</th>
                         <th class="no-sort">Country</th>
+                        <th class="no-sort">Number of reviewers</th>
                         <th>Rating</th>
                         <th class="no-sort">Stars</th>
                     </tr>
@@ -67,6 +68,7 @@
                         <td>{{$item->fleet_id}}</td>
                         <td>{{$item->fleet_name}}</td>
                         <td>{{$item->country}}</td>
+                        <td>{{$item->fleet_count}}</td>
                         <td>{{round($item->fleet_rating, 2);}}</td>
                         <td>
                             @for($i = 0; $i < ceil($item->fleet_rating); $i++)

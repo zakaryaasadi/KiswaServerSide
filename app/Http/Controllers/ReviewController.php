@@ -24,7 +24,7 @@ class ReviewController extends Controller
 
     public function RatingView(){
         $fleetsRating = DB::table('review_models')
-                    ->select(DB::raw('fleet_id, fleet_name, country, avg(fleet_rating) as fleet_rating'))
+                    ->select(DB::raw('fleet_id, fleet_name, country, count(fleet_rating) as fleet_count, avg(fleet_rating) as fleet_rating'))
                     ->where('fleet_rating', '<>', 0)
                     ->groupBy('fleet_id', 'fleet_name', 'country')
                     ->get();
@@ -34,7 +34,7 @@ class ReviewController extends Controller
                     ->get();
 
         $countriesRating = DB::table('review_models')
-                    ->select(DB::raw('country, avg(service_rating) as service_rating'))
+                    ->select(DB::raw('country, count(service_rating) as service_count, avg(service_rating) as service_rating'))
                     ->where('service_rating', '<>', 0)
                     ->groupBy('country')
                     ->get();
@@ -92,8 +92,6 @@ class ReviewController extends Controller
         
         foreach($data as $item){
             $item->location = "https://maps.google.com/?q=" . $item->job_pickup_latitude ."," . $item->job_pickup_longitude;
-            $item->is_receipt = $item->is_reply == 0 ? 2 : $item->is_receipt;
-            $item->is_coupon = $item->is_reply == 0 ? 2 : $item->is_coupon;
             $item->acknowledged_datetime = date("Y-m-d h:i:s a", strtotime($item->acknowledged_datetime));
             $item->started_datetime = date("Y-m-d h:i:s a", strtotime($item->started_datetime));
             $item->arrived_datetime = date("Y-m-d h:i:s a", strtotime($item->arrived_datetime));
