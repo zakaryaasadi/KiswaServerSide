@@ -33,9 +33,9 @@ class CreateReviewModelsTable extends Migration
             $table->integer('total_distance_travelled')->nullable()->default(0);
             
             $table->boolean('is_reply')->default(false);
-            $table->boolean('is_receipt')->default(false);
-            $table->string('price')->default('');
-            $table->boolean('is_coupon')->default(false);
+            $table->integer('is_receipt')->default(-1);
+            $table->string('price')->default('-');
+            $table->integer('is_coupon')->default(-1);
             $table->integer('service_rating')->default(0);
             $table->integer('fleet_rating')->default(0);
 
