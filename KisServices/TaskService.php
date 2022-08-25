@@ -152,7 +152,7 @@ class TaskService{
 
         Http::withoutVerifying()
         ->withOptions(["verify"=>false])
-                ->post(TookanCountries::$Values[$country]["MESSAGE_BIRD_REVIEW"], $body);
+                ->post(TookanCountries::$Values[$country]["MESSAGE_BIRD_SURVEY"], $body);
     }
 
 #
