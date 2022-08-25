@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ReviewModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use KisData\ResponseModel;
 use KisData\StatusCode;
 
@@ -16,6 +17,11 @@ class ReviewController extends Controller
         'job_id' => 'required',
     ];
     
+    private $notification_rules = [
+        'title' => 'required',
+        'body' => 'required',
+    ];
+
     public function RatingView(){
         $fleetsRating = DB::table('review_models')
                     ->select(DB::raw('fleet_id, fleet_name, country, avg(fleet_rating) as fleet_rating'))
@@ -78,11 +84,12 @@ class ReviewController extends Controller
 
         $recordsFiltered = $reviews->count();
 
-        $reviews = $reviews->skip($request->start)
+        $data = $reviews->skip($request->start)
                     ->take($request->length)
-                    ->orderByDesc('completed_datetime');
+                    ->orderByDesc('is_reply')
+                    ->orderByDesc('completed_datetime')
+                    ->get();
         
-        $data = $reviews->get();
         foreach($data as $item){
             $item->location = "https://maps.google.com/?q=" . $item->job_pickup_latitude ."," . $item->job_pickup_longitude;
             $item->is_receipt = $item->is_reply == 0 ? 2 : $item->is_receipt;
@@ -129,5 +136,34 @@ class ReviewController extends Controller
            $response = new ResponseModel(StatusCode::Success, "Success");
            return $response->toJson();
 
+    }
+
+
+    public function sendNotification(Request $request)
+    {
+        $validator = validator($request->all(), $this->notification_rules);
+        if($validator->fails()){
+            $fatalData = new ResponseModel(StatusCode::Failed, "There are some errors in the request", $validator->errors());
+            return $fatalData->toJson();
+        }
+            
+        $data = [
+            "to" => "/topics/survey",
+            "notification" => [
+                "title" => $request->title,
+                "body" => $request->body,  
+            ]
+        ];
+    
+        $headers = [
+            'Authorization' =>  'key=' . env("NOTIFICATION_SERVER_API"),
+            'Content-Type' => 'application/json',
+        ];
+    
+      
+        Http::withoutVerifying()
+                ->withHeaders($headers)
+                ->post('https://fcm.googleapis.com/fcm/send', $data);
+  
     }
 }

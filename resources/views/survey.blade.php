@@ -63,6 +63,9 @@
 
 @section('js')
 
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-messaging.js"></script>
 
 <script>
 
@@ -143,6 +146,68 @@
         
         
     });
+
+
+
+    $(document).ready(function(){
+        Notification.requestPermission();
+        initFirebaseMessagingRegistration();
+        console.log(Notification.permission);
+    });
+
+    var firebaseConfig = {
+        apiKey: "{{env('NOTIFICATION_API_API')}}",
+        authDomain: "{{env('NOTIFICATION_Auth_DOMAIN')}}",
+        projectId: "{{env('NOTIFICATION_PROJECT_ID')}}",
+        storageBucket: "{{env('NOTIFICATION_STORAGE_BUCKET')}}",
+        messagingSenderId: "{{env('NOTIFICATION_MESSAGING_SENDER_ID')}}",
+        appId: "{{env('NOTIFICATION_APP_ID')}}"
+    };
+    
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+    
+    function initFirebaseMessagingRegistration() {
+            messaging
+                .requestPermission()
+                .then(function () {
+                    return messaging.getToken()
+                })
+                .then(function(token) {
+                    subscribeTokenToTopic(token, "survey")
+                    console.log(token);
+                }).catch(function (err) {
+                    console.log('Catch '+ err);
+                });
+     }  
+      
+    messaging.onMessage(function(payload) {
+        const noteTitle = payload.notification.title;
+        const noteOptions = {
+            body: payload.notification.body,
+            icon: 'https://cdn-icons-png.flaticon.com/512/1486/1486464.png',
+        };
+        new Notification(noteTitle, noteOptions);
+        
+        location.reload(true);
+    });
+
+    function subscribeTokenToTopic(token, topic) {
+            fetch('https://iid.googleapis.com/iid/v1/'+token+'/rel/topics/'+topic, {
+                method: 'POST',
+                headers: new Headers({
+                'Authorization': "key={{env('NOTIFICATION_SERVER_API')}}"
+                })
+            }).then(response => {
+                if (response.status < 200 || response.status >= 400) {
+                    throw 'Error subscribing to topic: '+response.status + ' - ' + response.text();
+                }
+                console.log('Subscribed to "'+topic+'"');
+            }).catch(error => {
+                console.error(error);
+            })
+    }
   
     </script>
 

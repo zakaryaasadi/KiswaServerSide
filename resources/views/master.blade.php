@@ -10,8 +10,7 @@
         <link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/jquery.dataTables.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/main.css')}}">
-
-  
+        
     </head>
     <body>
         <div class="content-wrapper" style="margin-left: 0px">

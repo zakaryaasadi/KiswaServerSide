@@ -36,4 +36,6 @@ Route::group(['middleware' => [ReviewLogger::class]], function () {
 
 Route::post('/survey-table', [ReviewController::class, 'SurveyTable']);
 
+Route::post('/send_notification', [ReviewController::class, 'sendNotification']);
+
 Route::Get('/google/{latlng}', 'GoogleMapController@Get');
