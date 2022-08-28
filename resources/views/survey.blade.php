@@ -29,6 +29,21 @@
                 <input class="form-control form-control-rounded form-control-solid" id="key-search" type="text" placeholder="Search ...">
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <span class="input-group-text" >Start date</span>
+                    <input type="date" class="form-control" id="startdate">
+                  </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">End date</span>
+                    <input type="date" class="form-control" id="enddate">
+                  </div>
+            </div>
+        </div>
         <div class="table-responsive row">
             <table class="table table-hover" id="table">
                 <thead class="thead-default thead-lg">
@@ -70,10 +85,12 @@
 <script>
 
     $(function() {
-        
+        var utc = new Date().toJSON().slice(0,10);
+        $('#startdate').val(utc);
+        $('#enddate').val(utc);
             
         var table = $('#table').DataTable({
-            pageLength: 20,
+            pageLength: 100,
             responsive: true,
             fixedHeader: true,
             processing: true,
@@ -81,6 +98,11 @@
             ajax: {
                     "url": '/api/survey-table',
                     "type": "POST",
+                    data: function (d) {
+                        d.startdate = $('#startdate').val();
+                        d.enddate = $('#enddate').val();
+                
+                    },
                 },
             dom: 'rtip',
             columnDefs: [{
@@ -102,7 +124,7 @@
                 },
                 {data : 'is_reply', 
                     render: function (data) {
-                        return data == 1 ? '<i class="fa fa-check-circle text-success font-20"></i>' : '<i class="fa fa-times text-danger font-20"></i>';
+                        return data == 1 ? '<i class="fa fa-check-circle text-success font-20"></i>' :  (data == 0 ? '<i class="fa fa-times text-danger font-20"></i>' : '-');
                     }
                 },
                 {data : 'is_receipt', 
@@ -137,6 +159,10 @@
             select: true,
         });
         
+        $('#startdate, #enddate').change(function () {
+            table.draw();
+        });
+
         $('#key-search').on('keyup', function() {
             table.search(this.value).draw();
         });

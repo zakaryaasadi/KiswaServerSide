@@ -32,7 +32,7 @@ class CreateReviewModelsTable extends Migration
             $table->string('completed_datetime')->default('');
             $table->integer('total_distance_travelled')->nullable()->default(0);
             
-            $table->boolean('is_reply')->default(false);
+            $table->integer('is_reply')->default(-1);
             $table->integer('is_receipt')->default(-1);
             $table->string('price')->default('-');
             $table->integer('is_coupon')->default(-1);

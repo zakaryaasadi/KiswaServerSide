@@ -63,19 +63,24 @@ class ReviewController extends Controller
 
     public function SurveyTable(Request $request){
 
-        $reviews = DB::table('review_models');
+        $min = date("Y-m-d", strtotime($request->startdate));
+        $max = date("Y-m-d", strtotime($request->enddate));
+        
+        $reviews = DB::table('review_models')
+                    ->WhereBetween('completed_datetime', [$min, $max]);
+
+        
 
         $search = $request->search['value'];
         if($search != null || $search != ""){
             $reviews = $reviews->where(function ($query) use ($search) {
-                $query->where('job_id', '=', $search)
-                      ->orWhere('job_pickup_name', '=', $search)
-                      ->orWhere('job_pickup_phone', '=', $search)
-                      ->orWhere('fleet_name', '=', $search)
-                      ->orWhere('completed_datetime', '=', $search);
+                $query->where('job_id', 'like', '%' . $search . '%')
+                      ->orWhere('job_pickup_name', 'like', '%' . $search . '%')
+                      ->orWhere('job_pickup_phone', 'like', '%' . $search . '%')
+                      ->orWhere('fleet_name', 'like', '%' . $search . '%');
             });
-
         }
+
 
         $searchCountry = $request->columns[4]['search']['value'];
         if($searchCountry != null || $searchCountry != ""){
