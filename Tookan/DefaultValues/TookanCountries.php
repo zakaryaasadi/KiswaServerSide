@@ -18,6 +18,7 @@ class TookanCountries{
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
             "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/2820f3b6-c7a4-452e-85ec-80874a79eba7/invoke",
         ],
         "KSA" => [
             "NAME" => "Saudi Arabia",
@@ -31,6 +32,7 @@ class TookanCountries{
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
             "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/3892c748-176d-459d-a2d8-220c4975fafe/invoke",
         ],
         "OMN" => [
             "NAME" => "Oman",
@@ -44,6 +46,7 @@ class TookanCountries{
             "END_HOUR_WORK" => 19,
             "NUMBER_OF_TASKS" => 20,
             "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/6a25fb96-7cc6-42ed-9a78-16f57bcc3f5d/invoke",
         ],
         "UAE" => [
             "NAME" => "United Arab Emirates",
@@ -57,6 +60,7 @@ class TookanCountries{
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
             "MESSAGE_BIRD_SURVEY" => "https://flows.messagebird.com/flows/28be5e32-b3ac-45be-a733-176a679b72ce/invoke",
+            "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/2ecfbfc5-99ef-4d0c-a45e-379107133455/invoke",
         ],
         "BHR" => [
             "NAME" => "Bahrain",
@@ -70,6 +74,7 @@ class TookanCountries{
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
             "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/b8902b58-b48a-47f3-833c-86d9844852aa/invoke",
         ],
     ];
 }

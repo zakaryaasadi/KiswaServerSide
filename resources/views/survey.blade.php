@@ -216,7 +216,6 @@
         };
         new Notification(noteTitle, noteOptions);
         
-        location.reload(true);
     });
 
     function subscribeTokenToTopic(token, topic) {

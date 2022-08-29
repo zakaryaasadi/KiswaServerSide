@@ -133,6 +133,11 @@ return [
             'path' => storage_path('logs/review/Auto_Review_Log.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+        "auto_dont_cover_log" => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/dont_conver/Auto_Dont_Cover_Log.log'),
+            'level' => env('LOG_LEVEL', 'debug'),
+        ],
     ],
 
 ];

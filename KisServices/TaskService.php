@@ -124,6 +124,40 @@ class TaskService{
         Log::channel('auto_review_log')->info($data);        
     }
 
+
+
+    public function SendDontCoverMessageToFailedTasks($country){
+        $response = $this->tookanTaskService->FailedTasks(TookanCountries::$Values[$country]["TEAM_ID"]);
+
+        if(!$response->ok()){
+            Log::channel('auto_dont_cover_log')->info($response->json());
+            return; 
+        }
+
+        
+        $total_page_count = $response->object()->total_page_count;
+
+        foreach($response->object()->data as $item){
+            if($item->fleet_id == null){
+                Log::channel('auto_dont_cover_log')->info($item->job_pickup_name ." ". $item->job_pickup_phone." ".$country);
+                $this->sendWhatsappMessageToDontCover($item->job_pickup_name, $item->job_pickup_phone, $country);
+            }
+        }
+
+
+        for($page = 2; $page <= $total_page_count; $page++){
+            $response = $this->tookanTaskService->FailedTasks(TookanCountries::$Values[$country]["TEAM_ID"], $page);
+            foreach($response->object()->data as $item){
+                if($item->fleet_id == null){
+                    Log::channel('auto_dont_cover_log')->info($item->job_pickup_name ." ". $item->job_pickup_phone." ".$country);
+                    $this->sendWhatsappMessageToDontCover($item->job_pickup_name, $item->job_pickup_phone, $country);
+                }
+            }
+        }
+
+    }
+
+
 #
 
 
@@ -153,6 +187,18 @@ class TaskService{
         Http::withoutVerifying()
         ->withOptions(["verify"=>false])
                 ->post(TookanCountries::$Values[$country]["MESSAGE_BIRD_SURVEY"], $body);
+    }
+
+
+    private function sendWhatsappMessageToDontCover($name, $phone, $country){
+        $body = [
+            "name" => $name,
+            "phone" => $phone,
+        ];
+
+        Http::withoutVerifying()
+        ->withOptions(["verify"=>false])
+                ->post(TookanCountries::$Values[$country]["MESSAGE_BIRD_DONT_COVER"], $body);
     }
 
 #
