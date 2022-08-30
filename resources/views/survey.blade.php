@@ -14,8 +14,9 @@
 <div class="ibox">
     <div class="ibox-body">
         <h5 class="font-strong mb-4">SURVEY LIST</h5>
-        <div class="flexbox mb-4">
-            <div class="flexbox">
+
+        <div class="row mb-4">
+            <div class="col-md-1">
                 <label class="mb-0 mr-2">Country:</label>
                 <select class="form-control" id="type-filter" title="Please select" data-style="btn-solid" data-width="150px">
                     <option value="">All</option>
@@ -24,11 +25,29 @@
                     @endforeach
                 </select>
             </div>
-            <div class="input-group-icon input-group-icon-left mr-3">
-                <span class="input-icon input-icon-right font-16"><i class="fa fa-search"></i></span>
-                <input class="form-control form-control-rounded form-control-solid" id="key-search" type="text" placeholder="Search ...">
+
+            <div class="col-md-1">
+                <label class="mb-0 mr-2">Is received:</label>
+                <select class="form-control" id="type-filter-is-received" title="Please select" data-style="btn-solid" data-width="150px">
+                    <option value="">All</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+            <div class="col-md-8">
+            </div>
+
+            <div class="col-md-2">
+                <div class="input-group-icon input-group-icon-left mr-3">
+                    <span class="input-icon input-icon-right font-16"><i class="fa fa-search"></i></span>
+                    <input class="form-control form-control-rounded form-control-solid" id="key-search" type="text" placeholder="Search ...">
+                </div>
             </div>
         </div>
+
+                
+
+        
 
         <div class="row">
             <div class="col-md-4">
@@ -168,6 +187,9 @@
         });
         $('#type-filter').on('change', function() {
             table.column(4).search($(this).val()).draw();
+        });
+        $('#type-filter-is-received').on('change', function() {
+            table.column(8).search($(this).val()).draw();
         });
         
         

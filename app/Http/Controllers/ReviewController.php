@@ -87,6 +87,11 @@ class ReviewController extends Controller
             $reviews = $reviews->where('country', '=', $searchCountry);
         }
 
+        $isReceived = $request->columns[8]['search']['value'];
+        if($isReceived != null || $isReceived != ""){
+            $reviews = $reviews->where('is_receipt', '=', $isReceived);
+        }
+
         $recordsFiltered = $reviews->count();
 
         $data = $reviews->skip($request->start)
