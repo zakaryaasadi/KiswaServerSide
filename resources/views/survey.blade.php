@@ -104,9 +104,14 @@
 <script>
 
     $(function() {
-        var utc = new Date().toJSON().slice(0,10);
-        $('#startdate').val(utc);
-        $('#enddate').val(utc);
+        var today = new Date();
+        var yesterday = new Date();
+
+        yesterday.setDate(today.getDate() - 1);
+
+
+        $('#startdate').val(yesterday.toJSON().slice(0,10));
+        $('#enddate').val(today.toJSON().slice(0,10));
             
         var table = $('#table').DataTable({
             pageLength: 100,
