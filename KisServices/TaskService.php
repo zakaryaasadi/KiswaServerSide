@@ -139,6 +139,8 @@ class TaskService{
 
         foreach($response->object()->data as $item){
             if($item->fleet_id == null){
+                $item->job_pickup_phone = str_replace(" ","",$item->job_pickup_phone);
+
                 Log::channel('auto_dont_cover_log')->info($item->job_pickup_name ." ". $item->job_pickup_phone." ".$country);
                 $this->sendWhatsappMessageToDontCover($item->job_pickup_name, $item->job_pickup_phone, $country);
             }
@@ -149,6 +151,8 @@ class TaskService{
             $response = $this->tookanTaskService->FailedTasks(TookanCountries::$Values[$country]["TEAM_ID"], $page);
             foreach($response->object()->data as $item){
                 if($item->fleet_id == null){
+                    $item->job_pickup_phone = str_replace(" ","",$item->job_pickup_phone);
+
                     Log::channel('auto_dont_cover_log')->info($item->job_pickup_name ." ". $item->job_pickup_phone." ".$country);
                     $this->sendWhatsappMessageToDontCover($item->job_pickup_name, $item->job_pickup_phone, $country);
                 }
