@@ -42,6 +42,7 @@ class AutoReviewCommand extends Command
     public function handle()
     {
         $this->taskService->SendReviewMessageToSuccessTasks("UAE");
+        $this->taskService->SendReviewMessageToSuccessTasks("KSA");
         return Command::SUCCESS;
     }
 }
