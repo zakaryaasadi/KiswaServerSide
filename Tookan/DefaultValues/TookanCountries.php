@@ -17,7 +17,7 @@ class TookanCountries{
             "START_HOUR_WORK" => 9,
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
-            "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_SURVEY" => "https://flows.messagebird.com/flows/ece06cb9-6031-4f40-82aa-4c1e906b70cc/invoke",
             "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/2820f3b6-c7a4-452e-85ec-80874a79eba7/invoke",
         ],
         "KSA" => [
