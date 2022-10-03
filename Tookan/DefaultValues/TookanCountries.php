@@ -45,7 +45,7 @@ class TookanCountries{
             "START_HOUR_WORK" => 11,
             "END_HOUR_WORK" => 19,
             "NUMBER_OF_TASKS" => 20,
-            "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_SURVEY" => "https://flows.messagebird.com/flows/f712c708-938f-4d2d-8705-7c77a6554ba3/invoke",
             "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/6a25fb96-7cc6-42ed-9a78-16f57bcc3f5d/invoke",
         ],
         "UAE" => [
@@ -73,7 +73,7 @@ class TookanCountries{
             "START_HOUR_WORK" => 9,
             "END_HOUR_WORK" => 23,
             "NUMBER_OF_TASKS" => 30,
-            "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_SURVEY" => "https://flows.messagebird.com/flows/d6871f9b-5703-45cd-8aec-149d5fb3bbc4/invoke",
             "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/b8902b58-b48a-47f3-833c-86d9844852aa/invoke",
         ],
     ];

@@ -44,6 +44,8 @@ class AutoReviewCommand extends Command
         $this->taskService->SendReviewMessageToSuccessTasks("UAE");
         $this->taskService->SendReviewMessageToSuccessTasks("KSA");
         $this->taskService->SendReviewMessageToSuccessTasks("KWT");
+        $this->taskService->SendReviewMessageToSuccessTasks("OMN");
+        $this->taskService->SendReviewMessageToSuccessTasks("BHR");
         return Command::SUCCESS;
     }
 }
