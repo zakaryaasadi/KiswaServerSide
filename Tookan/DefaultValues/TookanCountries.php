@@ -29,7 +29,7 @@ class TookanCountries{
             "TIMEZONE_CODE" => "Asia/Riyadh",
             "WEEKEND" => "",
             "START_HOUR_WORK" => 9,
-            "END_HOUR_WORK" => 23,
+            "END_HOUR_WORK" => 20,
             "NUMBER_OF_TASKS" => 30,
             "MESSAGE_BIRD_SURVEY" => "https://flows.messagebird.com/flows/16db3835-7c4c-4a0b-9d30-e5cb629d735d/invoke",
             "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/3892c748-176d-459d-a2d8-220c4975fafe/invoke",
