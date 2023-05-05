@@ -7,8 +7,13 @@ use Tookan\DefaultValues\TookanJobType;
 class TaskApi{
 
 
-    public function GetTasks($body){
-        $body['job_type'] = [TookanJobType::PickUp, TookanJobType::Delivery, TookanJobType::Appointment, TookanJobType::FOS];
+    public function GetTasks($params){
+        $defaultValues = [
+            "job_type" => [TookanJobType::PickUp, TookanJobType::Delivery, TookanJobType::Appointment, TookanJobType::FOS],
+            "start_date" => date("Y-m-d", strtotime('-5 months')),
+            "end_date" => date("Y-m-d", strtotime('+1 months')),
+        ];
+        $body = array_merge($params, $defaultValues);
         return TookanApi::Callback("get_all_tasks", $body);
     }
 
