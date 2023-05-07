@@ -9,6 +9,15 @@ class TaskApi{
 
     public function GetTasks($body){
         $body['job_type'] = [TookanJobType::PickUp, TookanJobType::Delivery, TookanJobType::Appointment, TookanJobType::FOS];
+        
+        if(!isset($body['start_date'])){
+            $body["start_date"] = date("Y-m-d", strtotime('-5 months'));
+        }
+
+        if(!isset($body["end_date"])){
+            $body['end_date'] = date("Y-m-d", strtotime('+1 months'));
+        }
+
         return TookanApi::Callback("get_all_tasks", $body);
     }
 
