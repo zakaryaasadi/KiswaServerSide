@@ -76,5 +76,19 @@ class TookanCountries{
             "MESSAGE_BIRD_SURVEY" => "https://flows.messagebird.com/flows/d6871f9b-5703-45cd-8aec-149d5fb3bbc4/invoke",
             "MESSAGE_BIRD_DONT_COVER" => "https://flows.messagebird.com/flows/b8902b58-b48a-47f3-833c-86d9844852aa/invoke",
         ],
+        "َQAT" => [
+            "NAME" => "Qatar",
+            "TIMEZONE" => "-180",
+            "TEAM_ID" => "1492973",
+            "COUNTRY_CODE" => "+974",
+            "ALPHA_CODE" => "QAT",
+            "TIMEZONE_CODE" => "Asia/Qatar",
+            "WEEKEND" => "Friday",
+            "START_HOUR_WORK" => 9,
+            "END_HOUR_WORK" => 23,
+            "NUMBER_OF_TASKS" => 30,
+            "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_DONT_COVER" => "",
+        ],
     ];
 }
