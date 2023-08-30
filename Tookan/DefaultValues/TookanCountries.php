@@ -90,5 +90,19 @@ class TookanCountries{
             "MESSAGE_BIRD_SURVEY" => "",
             "MESSAGE_BIRD_DONT_COVER" => "",
         ],
+        "GREEN_CLOSET:KSA" => [
+            "NAME" => "Saudi Arabia",
+            "TIMEZONE" => "-180",
+            "TEAM_ID" => "1507488",
+            "COUNTRY_CODE" => "+966",
+            "ALPHA_CODE" => "KSA",
+            "TIMEZONE_CODE" => "Asia/Riyadh",
+            "WEEKEND" => "",
+            "START_HOUR_WORK" => 9,
+            "END_HOUR_WORK" => 20,
+            "NUMBER_OF_TASKS" => 30,
+            "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_DONT_COVER" => "",
+        ],
     ];
 }

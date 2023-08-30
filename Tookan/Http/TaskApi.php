@@ -29,7 +29,6 @@ class TaskApi{
             "layout_type" =>"0",
             "tracking_link" => 1,
             "geofence" => 1,
-            "pickup_custom_field_template" => "customFields",
         ];
 
         $body = array_merge($params, $defaultValues);
