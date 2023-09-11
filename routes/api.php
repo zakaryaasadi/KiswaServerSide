@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GreenClosetReportController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\LoggerMiddleware;
@@ -39,3 +40,8 @@ Route::post('/survey-table', [ReviewController::class, 'SurveyTable']);
 Route::post('/send_notification', [ReviewController::class, 'sendNotification']);
 
 Route::Get('/google/{latlng}', 'GoogleMapController@Get');
+
+
+Route::post('/total_report', [GreenClosetReportController::class, 'GetTotalReport']);
+
+Route::post('/report_table', [GreenClosetReportController::class, 'ReportTable']);

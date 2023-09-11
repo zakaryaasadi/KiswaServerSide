@@ -101,12 +101,30 @@ class TookanTaskService{
         return $this->taskApi->UpdateTaskDate($jobId, $date);
     }
 
-
     public function SuccessTasks($teamId, $page = 1){
+        return $this->GetTasksAsPages($teamId, $page, 
+                date("Y-m-d", strtotime("yesterday")), 
+                date("Y-m-d", strtotime("yesterday")),
+                [TookanTaskStatus::Successful]
+        );
+    }
+
+
+    public function FailedTasks($teamId, $page = 1){
+        return $this->GetTasksAsPages($teamId, $page, 
+                date("Y-m-d", strtotime("yesterday")), 
+                date("Y-m-d", strtotime("yesterday")),
+                [TookanTaskStatus::Failed]
+        );
+    }
+
+
+    public function GetTasksAsPages($teamId, $page, $start_date, $end_date, $job_status){
+
         $body = [
-            "job_status" => [TookanTaskStatus::Successful],
-            "start_date" => date("Y-m-d", strtotime("yesterday")),
-            "end_date" => date("Y-m-d", strtotime("yesterday")),
+            "job_status" => $job_status,
+            "start_date" => $start_date,
+            "end_date" => $end_date,
             "is_pagination" => 1,
             "requested_page" => $page,
             "team_id" => $teamId,
@@ -116,19 +134,8 @@ class TookanTaskService{
         return $response;
     }
 
-
-    public function FailedTasks($teamId, $page = 1){
-        $body = [
-            "job_status" => [TookanTaskStatus::Failed],
-            "start_date" => date("Y-m-d", strtotime("yesterday")),
-            "end_date" => date("Y-m-d", strtotime("yesterday")),
-            "is_pagination" => 1,
-            "requested_page" => $page,
-            "team_id" => $teamId,
-        ];
-
-        $response = $this->taskApi->GetTasks($body);
-        return $response;
+    public function GetTasks($body){
+        return $this->taskApi->GetTasks($body);
     }
 
 #endregion

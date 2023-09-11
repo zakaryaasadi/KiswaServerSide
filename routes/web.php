@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GreenClosetReportController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,5 @@ Route::get('/', function () {
 Route::get('/rating', [ReviewController::class, 'RatingView']);
 
 Route::get('/survey', [ReviewController::class, 'SurveyView']);
+
+Route::get('/reports', [GreenClosetReportController::class, 'Index']);
