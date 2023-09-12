@@ -123,10 +123,10 @@ class GreenClosetReportController extends Controller
         ];
         
 
-        // $search = $request->search['value'];
-        // if($search != null || $search != ""){
-            
-        // }
+        $job_id = $request->search['value'];
+        if($job_id != null || $job_id != ""){
+            $body["job_id"] = [$job_id];
+        }
 
 
         // $job_id = $request->columns[4]['search']['value'];

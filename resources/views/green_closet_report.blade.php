@@ -214,7 +214,7 @@
         });
 
         $('#key-search').on('keyup', function() {
-            //table.search(this.value).draw();
+            table.search(this.value).draw();
         });
         $('#order-type-filter').on('change', function() {
             table.column(6).search($(this).val()).draw();
