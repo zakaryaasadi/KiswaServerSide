@@ -104,5 +104,19 @@ class TookanCountries{
             "MESSAGE_BIRD_SURVEY" => "",
             "MESSAGE_BIRD_DONT_COVER" => "",
         ],
+        "GREEN_CLOSET:UAE" => [
+            "NAME" => "United Arab Emirates",
+            "TIMEZONE" => "-240",
+            "TEAM_ID" => "1517967",
+            "COUNTRY_CODE" => "+971",
+            "ALPHA_CODE" => "UAE",
+            "TIMEZONE_CODE" => "Asia/Dubai",
+            "WEEKEND" => "saturday",
+            "START_HOUR_WORK" => 11,
+            "END_HOUR_WORK" => 21,
+            "NUMBER_OF_TASKS" => 30,
+            "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_DONT_COVER" => "",
+        ],
     ];
 }
