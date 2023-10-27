@@ -118,5 +118,19 @@ class TookanCountries{
             "MESSAGE_BIRD_SURVEY" => "",
             "MESSAGE_BIRD_DONT_COVER" => "",
         ],
+        "GREEN_CLOSET:UK" => [
+            "NAME" => "United Kingdom",
+            "TIMEZONE" => "0",
+            "TEAM_ID" => "1519288",
+            "COUNTRY_CODE" => "+44",
+            "ALPHA_CODE" => "UK",
+            "TIMEZONE_CODE" => "Europe/London",
+            "WEEKEND" => "sunday",
+            "START_HOUR_WORK" => 11,
+            "END_HOUR_WORK" => 21,
+            "NUMBER_OF_TASKS" => 30,
+            "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_DONT_COVER" => "",
+        ],
     ];
 }
