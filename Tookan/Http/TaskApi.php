@@ -11,11 +11,11 @@ class TaskApi{
         $body['job_type'] = [TookanJobType::PickUp, TookanJobType::Delivery, TookanJobType::Appointment, TookanJobType::FOS];
         
         if(!isset($body['start_date'])){
-            $body["start_date"] = date("Y-m-d", strtotime('-4 months'));
+            $body["start_date"] = date("Y-m-d", strtotime('-10 days'));
         }
 
         if(!isset($body["end_date"])){
-            $body['end_date'] = date("Y-m-d", strtotime('+1 months'));
+            $body['end_date'] = date("Y-m-d", strtotime('+20 days'));
         }
 
         return TookanApi::Callback("get_all_tasks", $body);
