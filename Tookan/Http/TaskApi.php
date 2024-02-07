@@ -28,7 +28,7 @@ class TaskApi{
             "has_delivery" => "0",
             "layout_type" =>"0",
             "tracking_link" => 1,
-            "geofence" => 1,
+            "geofence" => 0,
         ];
 
         $body = array_merge($params, $defaultValues);
