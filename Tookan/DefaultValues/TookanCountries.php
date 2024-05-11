@@ -132,5 +132,19 @@ class TookanCountries{
             "MESSAGE_BIRD_SURVEY" => "",
             "MESSAGE_BIRD_DONT_COVER" => "",
         ],
+        "Keswaty:KWT" => [
+            "NAME" => "Kuwait",
+            "TIMEZONE" => "-180",
+            "TEAM_ID" => "1168385",
+            "COUNTRY_CODE" => "+965",
+            "ALPHA_CODE" => "KWT",
+            "TIMEZONE_CODE" => "Asia/Kuwait",
+            "WEEKEND" => "Friday",
+            "START_HOUR_WORK" => 9,
+            "END_HOUR_WORK" => 23,
+            "NUMBER_OF_TASKS" => 30,
+            "MESSAGE_BIRD_SURVEY" => "",
+            "MESSAGE_BIRD_DONT_COVER" => "",
+        ],
     ];
 }
