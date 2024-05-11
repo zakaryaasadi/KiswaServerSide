@@ -135,7 +135,7 @@ class TookanCountries{
         "Keswaty:KWT" => [
             "NAME" => "Kuwait",
             "TIMEZONE" => "-180",
-            "TEAM_ID" => "1168385",
+            "TEAM_ID" => "1562485",
             "COUNTRY_CODE" => "+965",
             "ALPHA_CODE" => "KWT",
             "TIMEZONE_CODE" => "Asia/Kuwait",
