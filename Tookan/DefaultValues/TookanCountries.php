@@ -132,7 +132,7 @@ class TookanCountries{
             "MESSAGE_BIRD_SURVEY" => "",
             "MESSAGE_BIRD_DONT_COVER" => "",
         ],
-        "Keswaty:KWT" => [
+        "KESWATY:KWT" => [
             "NAME" => "Kuwait",
             "TIMEZONE" => "-180",
             "TEAM_ID" => "1562485",
