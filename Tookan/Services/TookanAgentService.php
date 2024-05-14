@@ -3,6 +3,7 @@
 namespace Tookan\Services;
 
 use KisCore\Infrastructure\Singleton;
+use Tookan\DefaultValues\TookanCountries;
 use Tookan\Http\RegionApi;
 
 class TookanAgentService{
@@ -32,16 +33,30 @@ public function __construct()
 
         $this->agentsList = [];
         foreach($geofenceDetails as $i){
+
             $res = $this->regionApi->GetRegionById($i->region_id);
             
             if($res->ok()){
                 $data = $res->object()->data;
-                if(Count($data) > 0)
-                    $this->AddAgentToList($data[0]->fleets);
+                if(Count($data) > 0){
+                   if($this->IsSameTeam($data, $job->country)){
+                        $this->AddAgentToList($data[0]->fleets);
+                   }
+                }
+                    
             }
         }
 
         return $this->agentsList;
+    }
+
+
+    public function IsSameTeam($data, $country){
+        if(Count($data[0]->selected_team_id) > 0){
+            return (string)$data[0]->selected_team_id[0] == TookanCountries::$Values[$country]["TEAM_ID"];
+        }
+
+        return false;
     }
 
 
