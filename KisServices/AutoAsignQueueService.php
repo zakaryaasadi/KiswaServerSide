@@ -66,6 +66,7 @@ class AutoAsignQueueService{
         $agents = $this->tookanAgentService->GetAgentsbyJob($job);
         if(!isset($agents) || count($agents) == 0){
             Log::channel('auto_asign')->info("The task has been created, but there is no agent covering this area");
+            return;
         }
 
         $initDate = $this->createStartDateTask($job->country);
